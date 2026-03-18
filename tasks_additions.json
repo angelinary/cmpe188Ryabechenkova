@@ -1,0 +1,69 @@
+{
+  "tasks": [
+    {
+      "series": "Linear Regression",
+      "level": 5,
+      "id": "linreg_lvl5_huber_outliers",
+      "algorithm": "Linear Regression (Huber Loss, Outlier Robustness)",
+      "description": "Implement multivariate linear regression in PyTorch using Huber loss on a synthetic dataset with injected outliers.",
+      "interface_protocol": "pytorch_task_v1",
+      "requirements": {
+        "math": "Define Huber loss and explain why it is more robust than MSE in the presence of outliers.",
+        "data": "Synthetic multivariate regression dataset with 5 features and 10 percent target outliers.",
+        "implementation": "Use torch.nn.Linear and manual training loop with torch.optim.Adam.",
+        "evaluation": "The evaluate() function must compute MSE, R2, and MAE on the VALIDATION split.",
+        "validation": "Assert validation R2 > 0.75 and that Huber loss performs better than plain MSE baseline on MAE.",
+        "output": "Return dict with loss history, validation metrics, and baseline comparison."
+      }
+    },
+    {
+      "series": "Linear Regression",
+      "level": 6,
+      "id": "linreg_lvl6_batch_vs_minibatch",
+      "algorithm": "Linear Regression (Batch vs Mini-batch Gradient Descent)",
+      "description": "Compare full-batch and mini-batch training for linear regression on synthetic multivariate data.",
+      "interface_protocol": "pytorch_task_v1",
+      "requirements": {
+        "math": "Explain gradient descent update rule and the difference between batch and mini-batch optimization.",
+        "data": "Synthetic regression dataset with 8 features and moderate Gaussian noise.",
+        "implementation": "Train the same torch.nn.Linear model twice: once with full-batch updates and once with mini-batch DataLoader updates.",
+        "evaluation": "The evaluate() function must compute MSE and R2 on the VALIDATION split for both models.",
+        "validation": "Assert both models achieve validation R2 > 0.85 and compare convergence histories.",
+        "output": "Return dict with both training histories and final metric comparison."
+      }
+    },
+    {
+      "series": "Logistic Regression",
+      "level": 5,
+      "id": "logreg_lvl5_breast_cancer_realdata",
+      "algorithm": "Logistic Regression (Binary Classification on Breast Cancer Dataset)",
+      "description": "Implement binary logistic regression in PyTorch on sklearn breast cancer data with feature standardization.",
+      "interface_protocol": "pytorch_task_v1",
+      "requirements": {
+        "math": "Include sigmoid function and binary cross-entropy loss in LaTeX.",
+        "data": "Use sklearn.datasets.load_breast_cancer with train validation split.",
+        "preprocessing": "Standardize features using training set statistics only.",
+        "implementation": "Use torch.nn.Linear with BCEWithLogitsLoss and Adam optimizer.",
+        "evaluation": "The evaluate() function must compute loss, accuracy, precision, recall, F1, and ROC-AUC on the VALIDATION split.",
+        "validation": "Assert validation accuracy > 0.93 and F1 > 0.93.",
+        "output": "Return dict with loss history and final classification metrics."
+      }
+    },
+    {
+      "series": "Logistic Regression",
+      "level": 6,
+      "id": "logreg_lvl6_l1_sparsity",
+      "algorithm": "Logistic Regression (L1 Regularization for Sparse Features)",
+      "description": "Implement binary logistic regression with L1 regularization in PyTorch and inspect feature sparsity.",
+      "interface_protocol": "pytorch_task_v1",
+      "requirements": {
+        "math": "Define binary cross-entropy with an added L1 penalty term.",
+        "data": "Synthetic binary classification dataset with 20 features where only a subset are informative.",
+        "implementation": "Use torch.nn.Linear and add L1 penalty manually to the loss inside the training loop.",
+        "evaluation": "The evaluate() function must compute accuracy, precision, recall, F1, and sparsity ratio on the VALIDATION split.",
+        "validation": "Assert validation accuracy > 0.88 and that at least 30 percent of learned weights are near zero.",
+        "output": "Return dict with classification metrics, sparsity statistics, and loss history."
+      }
+    }
+  ]
+}
